@@ -1,11 +1,11 @@
  
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
-  "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "//1": "Mafi Chat Server Groupsが作成しました",
+  "//2": "基本のBotリポジトリです",
+  "//3": "discord.js v12を使用しています",
+  "name": "bot-base",
+  "version": "1.4.0",
+  "description": "DiscordのBotのベースです。",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -19,12 +19,12 @@
     "node": "12.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://github.com/mafiserver/bot-base"
   },
   "license": "MIT",
   "keywords": [
     "node",
-    "glitch",
-    "express"
+    "discord",
+    "bot"
   ]
 }
