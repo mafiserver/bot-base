@@ -1,4 +1,4 @@
- const http = require("http");
+const http = require("http");
 const querystring = require("querystring");
 const discord = require("discord.js");
 const client = new discord.Client();
