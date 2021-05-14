@@ -37,12 +37,12 @@ try {
   });
 client.on("message", async message => {
   if (message.author.id == client.user.id || message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return; //ボットのプレフィックスからメッセージが始まっているか確認
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
   if (message.mentions.has(client.user)) {
       message.reply("呼びましたか?");
     }
+  if (!message.content.startsWith(prefix)) return; //ボットのプレフィックスからメッセージが始まっているか確認
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
   if (command === "help") { //コマンド名
     message.channel.send({
         embed: {
