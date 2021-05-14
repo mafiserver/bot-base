@@ -2,6 +2,7 @@ const http = require("http");
 const querystring = require("querystring");
 const discord = require("discord.js");
 const client = new discord.Client();
+const prefix = process.env.prefix;
 try {
   // GAS(Google Apps Script)からの受信(botの常時起動)
   http.createServer(function(req, res){
@@ -34,17 +35,19 @@ try {
     console.log("Bot準備完了～");
     client.user.setActivity(process.env.activity, { type: process.env.acttype }); 
   });
-
-  client.on("message", message => {
-    if (message.author.id == client.user.id || message.author.bot) return;
-    if (message.mentions.has(client.user)) {
+client.on("message", async message => {
+  if (message.author.id == client.user.id || message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return; //ボットのプレフィックスからメッセージが始まっているか確認
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+  if (message.mentions.has(client.user)) {
       message.reply("呼びましたか?");
     }
-    if (message.content == process.env.prefix + "help") {
-      message.channel.send({
+  if (command === "help") { //コマンド名
+    message.channel.send({
         embed: {
           title: "ヘルプ",
-          description: "全てのコマンドの初めに`" + process.env.prefix + "`をつける必要があります。",
+          description: "全てのコマンドの初めに`" + prefix + "`をつける必要があります。",
           fields: [
             {
               name: "ヘルプ",
@@ -53,9 +56,8 @@ try {
           ]
         }
       });
-    }
-  });
-
+  }
+});
   if (process.env.DISCORD_BOT_TOKEN == undefined) {
     console.log("DISCORD_BOT_TOKENが設定されていません。");
     process.exit(0);
